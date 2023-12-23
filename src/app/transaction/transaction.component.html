@@ -1,1 +1,27 @@
-<p>transaction works!</p>
+<div>
+  <label for="goodId">Good ID:</label>
+  <input type="text" id="goodId" [(ngModel)]="goodId" />
+
+  <label for="startDate">Start Date:</label>
+  <input type="date" id="startDate" [(ngModel)]="startDate" />
+
+  <label for="endDate">End Date:</label>
+  <input type="date" id="endDate" [(ngModel)]="endDate" />
+
+  <button (click)="getTransactions()">Get Transactions</button>
+  <button (click)="getSummary()">Get Summary</button>
+</div>
+
+<div *ngIf="transactions && transactions.length > 0">
+  <h2>Transactions</h2>
+  <ul>
+    <li *ngFor="let transaction of transactions">{{ transaction | json }}</li>
+  </ul>
+</div>
+
+<div *ngIf="summary">
+  <h2>Summary</h2>
+  <p>Number of Transactions: {{ summary.numberOfTransactions }}</p>
+  <p>Total Amount: {{ summary.totalAmount }}</p>
+  <p>Remaining Amount: {{ summary.remainingAmount }}</p>
+</div>

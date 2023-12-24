@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../transaction.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { TransactionService } from '../transaction.service';
   templateUrl: './transaction.component.html',
   styleUrls: ['./transaction.component.css']
 })
-export class TransactionComponent {
+export class TransactionComponent implements OnInit {
 
   goodId: number = 0;
   startDate: string = '';
@@ -15,6 +15,11 @@ export class TransactionComponent {
   summary: any;
 
   constructor(private transactionService: TransactionService) {}
+
+  ngOnInit() {
+    this.getTransactions();
+    this.getSummary();
+  }
 
   getTransactions() {
     this.transactionService
